@@ -12,6 +12,15 @@ namespace BobsGameBackupLIB
             CreateHardLink(destination, source, IntPtr.Zero);
         }
 
+        /// <summary>
+        /// To create a link between two files.
+        /// This code was found on https://www.codeproject.com/Articles/70863/Hard-Links-vs-Soft-Links
+        /// The author of the code is Mohammad Elsheimy
+        /// </summary>
+        /// <param name="lpFileName">The path of the new hard link to be created. Notice that, it should reside in the location (local disk or network share) as the source file.</param>
+        /// <param name="lpExistingFileName">The path of the source file to create the hard link from.</param>
+        /// <param name="lpSecurityAttributes">The security descriptor for the new file. Till now, it is reserved for future use and it should not be used.</param>
+        /// <returns></returns>
         [DllImport("Kernel32.dll", CharSet = CharSet.Unicode)]
         private static extern bool CreateHardLink(
         string lpFileName,
@@ -19,6 +28,14 @@ namespace BobsGameBackupLIB
         IntPtr lpSecurityAttributes
         );
 
+        /// <summary>
+        /// This code was found on https://www.codeproject.com/Articles/70863/Hard-Links-vs-Soft-Links
+        /// The author of the code is Mohammad Elsheimy
+        /// </summary>
+        /// <param name="lpSymlinkFileName"></param>
+        /// <param name="lpTargetFileName"></param>
+        /// <param name="dwFlags"></param>
+        /// <returns></returns>
         [DllImport("Kernel32.dll", CharSet = CharSet.Unicode)]
         static extern bool CreateSymbolicLink(
             string lpSymlinkFileName,
