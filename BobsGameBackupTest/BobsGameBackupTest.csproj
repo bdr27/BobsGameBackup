@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="LinkFileTest\LinkFileTest_Modification_Destination.txt" />
+    <None Remove="LinkFileTest\LinkFileTest_Modification_Source.txt" />
+    <None Remove="LinkFileTest\LinkFileTest_NoModification.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="LinkFileTest\LinkFileTest_Modification_Destination.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LinkFileTest\LinkFileTest_Modification_Source.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LinkFileTest\LinkFileTest_NoModification.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.0.1" />
+    <PackageReference Include="MSTest.TestAdapter" Version="1.4.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="1.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BobsGameBackupLIB\BobsGameBackupLIB.csproj" />
+  </ItemGroup>
+
+</Project>
