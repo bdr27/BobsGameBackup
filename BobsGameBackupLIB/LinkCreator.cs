@@ -10,15 +10,18 @@ namespace BobsGameBackupLIB
     public static class LinkCreator
     {
         /// <summary>
-        /// Links two file locations together
+        /// Creates a hard link between a source file (Existing) and destination file (New File)
         /// </summary>
-        /// <param name="source"></param>
-        /// <param name="destination"></param>
+        /// <exception cref="SourceFileNotFoundException">Source file doesn't exist</exception>
+        /// <exception cref="DestinationFileExistsException">Destination file already exists</exception>
+        /// <exception cref="DestinationDirectoryNotFoundException">Destination directory not found</exception>
+        /// <param name="source">Source File</param>
+        /// <param name="destination">Destination file location</param>
         public static void LinkFile(string source, string destination)
         {
             if (!File.Exists(source))
             {
-                throw new SourceNotFoundException(source);
+                throw new SourceFileNotFoundException(source);
             }
             if (File.Exists(destination))
             {
@@ -26,10 +29,15 @@ namespace BobsGameBackupLIB
             }
             if (!Directory.Exists(Path.GetDirectoryName(destination)))
             {
-                throw new DestinationNotFoundException(destination);
+                throw new DestinationDirectoryNotFoundException(destination);
             }
 
             CreateHardLink(destination, source, IntPtr.Zero);
+        }
+
+        public static void LinkDirectory(string source, string destination)
+        {
+
         }
 
         /// <summary>

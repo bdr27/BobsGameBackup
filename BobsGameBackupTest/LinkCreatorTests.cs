@@ -78,7 +78,7 @@ namespace BobGameBackupTest
             string source = @"LinkFileTest\LinkFileTest_Source_DoesNotExist.txt";
             string destination = @"LinkFileTest\Exists\LinkFileTest_Destination_Exists.txt";
             Assert.IsFalse(File.Exists(source));
-            Assert.ThrowsException<SourceNotFoundException>(() => LinkCreator.LinkFile(source, destination));
+            Assert.ThrowsException<SourceFileNotFoundException>(() => LinkCreator.LinkFile(source, destination));
         }
 
         [TestMethod]
@@ -87,7 +87,7 @@ namespace BobGameBackupTest
             string source = @"LinkFileTest\LinkFileTest_Destination_DoesNotExist.txt";
             string destination = @"LinkFileTest\NotFound\LinkFileTest_Destination_DoesNotExist.txt";
             Assert.IsFalse(Directory.Exists(Path.GetDirectoryName(destination)));
-            Assert.ThrowsException<DestinationNotFoundException>(() => LinkCreator.LinkFile(source, destination));
+            Assert.ThrowsException<DestinationDirectoryNotFoundException>(() => LinkCreator.LinkFile(source, destination));
         }
 
         private void CleanDestinationDirectory(string source, string destination)
