@@ -1,5 +1,7 @@
-﻿using System;
+﻿using BobsGameBackupLIB.Exceptions;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -7,8 +9,26 @@ namespace BobsGameBackupLIB
 {
     public static class LinkCreator
     {
+        /// <summary>
+        /// Links two file locations together
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="destination"></param>
         public static void LinkFile(string source, string destination)
         {
+            if (!File.Exists(source))
+            {
+                throw new SourceNotFoundException(source);
+            }
+            if (File.Exists(destination))
+            {
+                throw new DestinationFileExistsException(destination);
+            }
+            if (!Directory.Exists(Path.GetDirectoryName(destination)))
+            {
+                throw new DestinationNotFoundException(destination);
+            }
+
             CreateHardLink(destination, source, IntPtr.Zero);
         }
 

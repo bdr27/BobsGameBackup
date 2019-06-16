@@ -7,12 +7,24 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="LinkFileTest\Exists\LinkFileTest_Destination_Exists.txt" />
+    <None Remove="LinkFileTest\LinkFileTest_Destination_DoesNotExist.txt" />
+    <None Remove="LinkFileTest\LinkFileTest_Destination_Exists.txt" />
     <None Remove="LinkFileTest\LinkFileTest_Modification_Destination.txt" />
     <None Remove="LinkFileTest\LinkFileTest_Modification_Source.txt" />
     <None Remove="LinkFileTest\LinkFileTest_NoModification.txt" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="LinkFileTest\Exists\LinkFileTest_Destination_Exists.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LinkFileTest\LinkFileTest_Destination_DoesNotExist.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LinkFileTest\LinkFileTest_Destination_Exists.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="LinkFileTest\LinkFileTest_Modification_Destination.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
