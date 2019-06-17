@@ -82,12 +82,39 @@ namespace BobGameBackupTest
         }
 
         [TestMethod]
-        public void LInkFileTest_Destination_DoesNotExist()
+        public void LinkFileTest_Destination_DoesNotExist()
         {
             string source = @"LinkFileTest\LinkFileTest_Destination_DoesNotExist.txt";
             string destination = @"LinkFileTest\NotFound\LinkFileTest_Destination_DoesNotExist.txt";
             Assert.IsFalse(Directory.Exists(Path.GetDirectoryName(destination)));
             Assert.ThrowsException<DestinationDirectoryNotFoundException>(() => LinkCreator.LinkFile(source, destination));
+        }
+
+        /// <summary>
+        /// These tests will fail if not run in admin mode
+        /// </summary>
+        [TestMethod]
+        public void LinkDirectoryTest()
+        {
+            string source = @"LinkDirectoryTest";
+            string destination = @"LinkDirectory";
+            Assert.IsTrue(Directory.Exists(source));
+            if (Directory.Exists(destination))
+            {
+                Directory.Delete(destination);
+            }
+            Assert.IsFalse(Directory.Exists(destination));
+            LinkCreator.LinkDirectory(source, destination);
+            Assert.IsTrue(Directory.Exists(destination));
+            var srcFiles = Directory.GetFiles(source);
+            var destFiles = Directory.GetFiles(destination);
+            Assert.AreEqual(srcFiles.Length, destFiles.Length);
+            for(int i = 0; i < srcFiles.Length; i++)
+            {
+                Assert.AreEqual(srcFiles[i], destFiles[i]);
+            }
+            Directory.Delete(destination);
+            Assert.IsFalse(Directory.Exists(destination));
         }
 
         private void CleanDestinationDirectory(string source, string destination)

@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="LinkDirectory\**" />
+    <EmbeddedResource Remove="LinkDirectory\**" />
+    <None Remove="LinkDirectory\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="LinkFileTest\Exists\LinkFileTest_Destination_Exists.txt" />
     <None Remove="LinkFileTest\LinkFileTest_Destination_DoesNotExist.txt" />
     <None Remove="LinkFileTest\LinkFileTest_Destination_Exists.txt" />
@@ -44,6 +50,24 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BobsGameBackupLIB\BobsGameBackupLIB.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LinkDirectoryTest\crash.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="LinkDirectoryTest\FFBPlugin.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="LinkDirectoryTest\FFBPlugin.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="LinkDirectoryTest\Readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="LinkDirectoryTest\setup.ini">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -9,6 +9,9 @@ namespace BobsGameBackupLIB
 {
     public static class LinkCreator
     {
+        private const uint SYMBLOC_LINK_FLAG_FILE = 0x0;
+        private const uint SYMBLOC_LINK_FLAG_DIRECTORY = 0x1;
+
         /// <summary>
         /// Creates a hard link between a source file (Existing) and destination file (New File)
         /// </summary>
@@ -35,9 +38,27 @@ namespace BobsGameBackupLIB
             CreateHardLink(destination, source, IntPtr.Zero);
         }
 
+        /// <summary>
+        /// For this function to work application needs to be run as administrator
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="destination"></param>
         public static void LinkDirectory(string source, string destination)
         {
-
+            if (!Directory.Exists(source))
+            {
+                throw new SourceDirectoryNotFoundException(source);
+            }
+            if (Directory.Exists(destination))
+            {
+                throw new DestinationDirectoryExistsException(destination);
+            }
+            //var files = Directory.GetFiles(source);
+            //foreach(var file in files)
+            //{
+            //    File.Move(file, $"{destination}\\{Path.GetFileName(file)}");
+            //}
+            var result = CreateSymbolicLink(destination, source, SYMBLOC_LINK_FLAG_DIRECTORY);
         }
 
         /// <summary>
@@ -70,8 +91,5 @@ namespace BobsGameBackupLIB
             string lpTargetFileName,
             uint dwFlags
         );
-
-        const uint SYMBLOC_LINK_FLAG_FILE = 0x0;
-        const uint SYMBLOC_LINK_FLAG_DIRECTORY = 0x1;
     }
 }
