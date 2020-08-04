@@ -7,7 +7,7 @@ namespace BobsGameBackupLIB.Exceptions
     public class SourceDirectoryNotFoundException : Exception
     {
         private string sourceDirectory;
-        public SourceDirectoryNotFoundException(string sourceDirectory) : ($"Unable to find directory {sourceDirectory}")
+        public SourceDirectoryNotFoundException(string sourceDirectory) : base($"Unable to find directory {sourceDirectory}")
         {
             this.sourceDirectory = sourceDirectory;
         }

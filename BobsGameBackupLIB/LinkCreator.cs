@@ -43,7 +43,7 @@ namespace BobsGameBackupLIB
         /// </summary>
         /// <param name="source"></param>
         /// <param name="destination"></param>
-        public static void LinkDirectory(string source, string destination)
+        public static bool LinkDirectory(string source, string destination)
         {
             if (!Directory.Exists(source))
             {
@@ -58,7 +58,7 @@ namespace BobsGameBackupLIB
             //{
             //    File.Move(file, $"{destination}\\{Path.GetFileName(file)}");
             //}
-            var result = CreateSymbolicLink(destination, source, SYMBLOC_LINK_FLAG_DIRECTORY);
+            return CreateSymbolicLink(destination, source, SYMBLOC_LINK_FLAG_DIRECTORY);
         }
 
         /// <summary>

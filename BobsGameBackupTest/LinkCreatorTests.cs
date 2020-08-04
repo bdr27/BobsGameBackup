@@ -104,14 +104,15 @@ namespace BobGameBackupTest
                 Directory.Delete(destination);
             }
             Assert.IsFalse(Directory.Exists(destination));
-            LinkCreator.LinkDirectory(source, destination);
+            Assert.IsTrue(LinkCreator.LinkDirectory(source, destination));
             Assert.IsTrue(Directory.Exists(destination));
             var srcFiles = Directory.GetFiles(source);
             var destFiles = Directory.GetFiles(destination);
             Assert.AreEqual(srcFiles.Length, destFiles.Length);
             for(int i = 0; i < srcFiles.Length; i++)
             {
-                Assert.AreEqual(srcFiles[i], destFiles[i]);
+                
+                Assert.AreEqual(Path.GetFileName(srcFiles[i]), Path.GetFileName(destFiles[i]));
             }
             Directory.Delete(destination);
             Assert.IsFalse(Directory.Exists(destination));
