@@ -9,7 +9,7 @@ namespace BobsGameBackupLIB
 {
     public static class LinkCreator
     {
-        private const uint SYMBLOC_LINK_FLAG_FILE = 0x0;
+        //private const uint SYMBLOC_LINK_FLAG_FILE = 0x0;
         private const uint SYMBLOC_LINK_FLAG_DIRECTORY = 0x1;
 
         /// <summary>
